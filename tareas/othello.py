@@ -1,3 +1,14 @@
+"""
+Reglas
+primero fichas negras
+1 mov por turno
+pasa turno si no tiene movs
+
+MOV: pone ficha si
+        linea recta diagonal u ortogonal del mismo color
+"""
+
+
 tablero = [[0, 0, 0, 0, 0, 0, 0, 0],
            [0, 0, 0, 0, 0, 0, 0, 0],
            [0, 0, 0, 0, 0, 0, 0, 0],
@@ -44,6 +55,19 @@ def copiaTablero(fuente, destino):
 def miniMaxDecision(tablero, jugador, x, y):
     assert type(x) == int, "Entrada Incorrecta: x";
     assert type(y) == int, "Entrada Incorrecta: y";
+
+    moveX=[0,0,0,0,0,0,0,0,0,0,
+           0,0,0,0,0,0,0,0,0,0,
+           0,0,0,0,0,0,0,0,0,0,
+           0,0,0,0,0,0,0,0,0,0,
+           0,0,0,0,0,0,0,0,0,0,
+           0,0,0,0,0,0,0,0,0,0]
+    moveY=[0,0,0,0,0,0,0,0,0,0,
+           0,0,0,0,0,0,0,0,0,0,
+           0,0,0,0,0,0,0,0,0,0,
+           0,0,0,0,0,0,0,0,0,0,
+           0,0,0,0,0,0,0,0,0,0,
+           0,0,0,0,0,0,0,0,0,0]
 
     return True 
         
