@@ -1,15 +1,14 @@
 ﻿using System;
 using Gtk;
 
-namespace Ahotsa
+namespace Athosa
 {
     class MainClass
     {
         public static void Main(string[] args)
         {
             Application.Init();
-            MainWindow win = new MainWindow();
-            win.Show();
+            new SharpApp();
             Application.Run();
         }
     }
