@@ -105,7 +105,7 @@ namespace Athosa.Logic
 
         Tuple getCoordFromList(Tuple coord, List<Tuple> list)
         {
-            Tuple element;
+            Tuple element = new Tuple();
             element.setCol(-1);
             element.setRow(-1);
 
@@ -127,13 +127,15 @@ namespace Athosa.Logic
 
         bool coordInList(Tuple coord, List<Tuple> list)
         {
-            for(int  i = 0; i < list.Count; i++)
-            { 
+            for (int i = 0; i < list.Count; i++)
+            {
                 if ((list[i].getRow() == coord.getRow()) && (list[i].getCol() == coord.getCol()))
                 {
                     return true;
                 }
             }
+            return false;
+        }
     
             /*
         int compareFunction(a, b)
@@ -164,7 +166,7 @@ namespace Athosa.Logic
             }
         }*/
 
-        int estimate(Tuple coord)
+        int estimate (Tuple coord)
         {
             int estRow = coord.getRow();
             int estCol = coord.getCol();
@@ -188,7 +190,7 @@ namespace Athosa.Logic
             {
                 int dRow = Math.Abs(estRow - end.getRow());
                 int dCol = Math.Abs(estCol - end.getCol());
-                return Math.Sqrt(dRow + dCol);
+                return Convert.ToInt32(Math.Sqrt(dRow + dCol));
             }
         }
             //metodos por hacer

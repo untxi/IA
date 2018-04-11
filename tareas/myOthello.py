@@ -89,7 +89,7 @@ def EvalBoard(pBoard, pPlayer):
         for x in range(n):
             if pBoard[y][x] == pPlayer:
                 if (x == 0 or x == n - 1) and (y == 0 or y == n - 1):
-                    tot += 4 # orner
+                    tot += 4 #corner
                 elif (x == 0 or x == n - 1) or (y == 0 or y == n - 1):
                     tot += 2 #side
                 else:
