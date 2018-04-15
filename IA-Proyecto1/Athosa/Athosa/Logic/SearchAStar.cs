@@ -10,13 +10,18 @@ namespace Athosa.Logic
     {
         private int row;
         private int col;
+        Tuple before;
+        public bool hasBefore;
+        int estimation;
+        double distance;
 
-        void main (int pRow, int pCol)
+        void main(int pRow, int pCol)
         {
             row = pRow;
             col = pCol;
         }
 
+        
         public int getRow()
         {
             return row;
@@ -33,22 +38,60 @@ namespace Athosa.Logic
         {
             col = pCol;
         }
+        public void setBefore(Tuple pBefore)
+        {
+            before = pBefore;
+            hasBefore = true;
+        }
+        public Tuple getBefore()
+        {
+            return before;
+        }
+
+        void setEstimation(int pEstimation)
+        {
+            estimation = pEstimation;
+        }
+        int getEstimation()
+        {
+            return estimation;
+        }
+
+        void setDistance(double pDistance)
+        {
+            distance = pDistance;
+        }
+
+        double getDistance()
+        {
+            return distance;
+        }
     }
 
-
+    class Matrix
+    {
+        int[,] matrix;
+        void main(int n, int m)
+        {
+            matrix = new int[n, m];
+        }
+    }
 
     class SearchAStar
     {
         Tuple init;
         Tuple end;
-        List<List<int>> matrix;
+        
+        Matrix matrix;
         float probability;
         bool found;
         bool hasPath;
         List<Tuple> opened;
         List<Tuple> closed;
+        List<Tuple> solution;
+        Tuple actual;
 
-        void main(Tuple pInit, Tuple pEnd,List<List<int>> pMatrix, float pProbability)
+        void main(Tuple pInit, Tuple pEnd, Matrix pMatrix, float pProbability)
         {
             init = pInit;
             end = pEnd;
@@ -60,9 +103,13 @@ namespace Athosa.Logic
 
         void start()
         {
-            insertIntoOpened(new Coord(init.getRow(), init.getCol(), estimate(init)));    //Insertamos el inicio en abierta
+            Tuple coord = new Tuple();
+            coord.setRow(init.getRow());
+            coord.setCol(init.getCol());
+            coord.setEstimation(init.getEstimation());
+            insertIntoOpened(coord);    //Insertamos el inicio en abierta
 
-            Tuple actual;
+            
             while (!found && hasPath)
             {
                 actual = getFromOpened();  //obtenemos el menor valor de abierta
@@ -79,7 +126,7 @@ namespace Athosa.Logic
             }
             if (found)
             {
-                List<string> path = buildSolutionPath(); //devolver camino
+                List<Tuple> path = buildSolutionPath(); //devolver camino
                 paintBoats(path);
             }
             else
@@ -113,8 +160,8 @@ namespace Athosa.Logic
             {
                 if ((list[i].getRow() == coord.getRow()) && (list[i].getCol() == coord.getCol()))
                 {
-                    element.setCol(list[i].getCol);
-                    element.setRow(list[i].getRow);
+                    element.setCol(list[i].getCol());
+                    element.setRow(list[i].getRow());
                     return element;
                 }
                 else
@@ -122,9 +169,13 @@ namespace Athosa.Logic
                     return element;
                 }
             }
-            
+
         }
 
+        List<Tuple> sortTuples(List<Tuple> toSort)
+        {
+            return toSort;
+        }
         bool coordInList(Tuple coord, List<Tuple> list)
         {
             for (int i = 0; i < list.Count; i++)
@@ -136,56 +187,26 @@ namespace Athosa.Logic
             }
             return false;
         }
-    
-            /*
-        int compareFunction(a, b)
-        {
-            if (a.getEstimation() == 0)
-            {
-                return -1;
-            }
-                
-            if (b.getEstimation() == 0)
-            {
-                return 1;
-            }
-            
-             if (a.getEstimation() + a.getDistFromOrigin() < b.getEstimation() + b.getDistFromOrigin())
-            {
-                return -1;
-            }
-            
-            if (a.getEstimation() + a.getDistFromOrigin() == b.getEstimation() + b.getDistFromOrigin())
-            {
-                return 0;
-            }
-                
-            else
-            {
-                return 1;
-            }
-        }*/
-
-        int estimate (Tuple coord)
+        int estimate(Tuple coord)
         {
             int estRow = coord.getRow();
             int estCol = coord.getCol();
 
             if (estRow == end.getRow() && estCol == end.getCol())
-                {
-                    return 0;
-                }
-                
+            {
+                return 0;
+            }
+
             if (estRow == end.getRow())
-                {
-                    return Math.Abs(estCol - end.getCol());
-                }
-               
+            {
+                return Math.Abs(estCol - end.getCol());
+            }
+
             if (estCol == end.getCol())
             {
                 return Math.Abs(estRow - end.getRow());
             }
-                
+
             else
             {
                 int dRow = Math.Abs(estRow - end.getRow());
@@ -193,150 +214,183 @@ namespace Athosa.Logic
                 return Convert.ToInt32(Math.Sqrt(dRow + dCol));
             }
         }
-            //metodos por hacer
-            /*
-             expandNode(coord) {
-            for (let i = -1; i <= 1; i++) {
-                for (let j = -1; j <= 1; j++) {
-                    let row = coord.getRow() + i;
-                    let col = coord.getCol() + j;
-                    let actual = new Coord(row, col);
-                    //Necesitamos una especie de marcaje
-                    if (this.matrix.inMatrixLimit(actual) && (i !== 0 || j !== 0) && this.matrix.getPossitionValue(row, col) !== "block" 
-                && this.matrix.getPossitionValue(row, col) !== "pirate") {
-                        let pirate = Math.random() * 100;
-                        if (pirate > this.prob ||
-                            actual.getRow() === this.init.getRow() && actual.getCol() === this.init.getCol() ||
-                            actual.getRow() === this.end.getRow() && actual.getCol() === this.end.getCol()) {   //si pirate es <= a la prob, entonces 
+        
+        void expandNode(Tuple coord) {
+        for (int i = -1; i <= 1; i++) {
+            for (int j = -1; j <= 1; j++) {
+                int row = coord.getRow() + i;
+                int col = coord.getCol() + j;
+                Tuple actual = new Tuple(); ;
+                actual.setRow(row);
+                actual.setCol(col);
+                //marcas
+                if (matrix.inMatrixLimit(actual) && (i != 0 || j != 0) && matrix.getPossitionValue(row, col) != "block" 
+            && matrix.getPossitionValue(row, col) != "bad")
+                {
+                    int bad = Math.random() * 100;
+                    if (bad > probability ||
+                        actual.getRow() == init.getRow() && actual.getCol() == init.getCol() ||
+                        actual.getRow() == end.getRow() && actual.getCol() == end.getCol()) //si pirate es <= a la prob, entonces 
+                        {   
                             actual.setBefore(coord);    //padre es coord
-                            actual.setEstimation(this.estimate(actual));
+                            actual.setEstimation(estimate(actual));
                             //valor del anterior + distancia entre padre e hijo + estimación
-                            if(this.matrix.getPossitionValue(row, col) !== "wind")
-                                actual.setDistFromOrigin(coord.getDistFromOrigin() + this.getDistance(coord, actual));
+                            if (matrix.getPossitionValue(row, col) != "allow")
+                            {
+                                actual.setDistance(getDistance(coord.getBefore() + actual.getDistance()));
+                            }
                             else
-                                actual.setDistFromOrigin(coord.getDistFromOrigin() + this.getDistance(coord, actual) * 2);
-                            if(!this.coordInList(actual, this.opened) && !this.coordInList(actual, this.closed))    //Ni abierta ni cerrada
-                                this.insertIntoOpened(actual);
-                            else{
-                                let inClosed = true;
-                                let oldCoord = this.getCoordFromList(actual, this.closed);
-                                if(!oldCoord) {  //buscamos en abierta
-                                    oldCoord = this.getCoordFromList(actual, this.opened);
-                                    inClosed = false;
-                                }
-                                if(oldCoord.getDistFromOrigin() > actual.getDistFromOrigin()){
-                                    if(!inClosed)
-                                        this.modifyCoordInList(actual, this.opened);
-                                    else
-                                        this.modifyCoordInList(actual, this.closed);
-                                }
+                            {
+                                actual.setDistance(getDistance(coord.getBefore()+ getDistance(coord, actual) * 2));
+                            }
+
+                        if(!coordInList(actual, opened) && !coordInList(actual, this.closed))    //Ni abierta ni cerrada
+                            insertIntoOpened(actual);
+                        else{
+                            bool inClosed = true;
+                            Tuple oldCoord = getCoordFromList(actual, closed);
+                            if(!oldCoord) {  //buscamos en abierta
+                                oldCoord = this.getCoordFromList(actual, opened);
+                                inClosed = false;
+                            }
+                            if(getDistance(oldCoord.getBefore() > getDistance(actual)))
+                            {
+                                if(!inClosed)
+                                    modifyCoordInList(actual, opened);
+                                else
+                                    modifyCoordInList(actual, closed);
                             }
                         }
-                        else{
-                            actual.paintCoordPirate();
-                        }
-
-                        //this.insertIntoOpened(actual);
+                    }
+                    else{
+                        actual.paintCoordPirate();
                     }
                 }
             }
-            this.opened = this.opened.sort(this.compareFunction); //reordenamos despues de cada expansión
         }
+        opened = opened.sortTuples(); //reordenamos despues de cada expansión
+    }
 
-        getDistance(coord1, coord2) {
-            let row = coord1.getRow();
-            let col = coord1.getCol();
+        double getDistance(Tuple coord1, Tuple coord2)
+        {
+            int row = coord1.getRow();
+            int col = coord1.getCol();
             if (row == coord2.getRow() && col == coord2.getCol())
-                return 0;
-            else if (row === coord2.getRow())
-                return Math.abs(col - coord2.getCol());
-            else if (col === coord2.getCol())
-                return Math.abs(row - coord2.getRow());
-            else {
-                let dRow = Math.abs(row - coord2.getRow());
-                let dCol = Math.abs(col - coord2.getCol());
-                return Math.sqrt(Math.pow(dRow, 2) + Math.pow(dCol, 2));
+            {
+                return 0;                
+            }
+            if (row == coord2.getRow())
+            {
+                return Math.Abs(col - coord2.getCol());
+            }
+            if (col == coord2.getCol())
+            {
+                return Math.Abs(row - coord2.getRow());
+            }
+            else
+            {
+                int dRow = Math.Abs(row - coord2.getRow());
+                int dCol = Math.Abs(col - coord2.getCol());
+                return Math.Sqrt(Math.Pow(dRow, 2) + Math.Pow(dCol, 2));
             }
         }
-
-
-
-        List<string> buildSolutionPath() {
-            if (this.found) {
-                this.solution = [];
-                this.buildSolutionPathRec(this.closed[this.closed.Count - 1]);
-                return this.solution;
+        List<Tuple> buildSolutionPath()
+        {
+            if (found)
+            {
+                solution.Clear();
+                buildSolutionPathRec(closed[closed.Count - 1]);
+                return solution;
             }
         }
-
-        buildSolutionPathRec(act) {
-            if (act.before) {
-                this.buildSolutionPathRec(act.before);
+        void buildSolutionPathRec(Tuple actual)
+        {
+            if (actual.hasBefore())
+            {
+                buildSolutionPathRec(getBefore(actual));
+                solution.Add(actual);
+            }
+            else
+            {
                 this.solution.push(act);
             }
-            else {
-                this.solution.push(act);
-            }
 
         }
 
-        pathFound() {
-            return this.found;
+        bool pathFound()
+        {
+            return found;
         }
-
-        getFromOpened() {
+        Tuple getFromOpened()
+        {
             let first = this.opened[0];
             this.opened.splice(0, 1);
             return first;
         }
 
-        insertIntoOpened(coord) {
-            this.opened.push(coord);
+        void insertIntoOpened(Tuple coord)
+        {
+            opened.Add(coord);
+        }
+        void insertIntoClosed(Tuple coord)
+        {
+            closed.Add(coord);
         }
 
-        insertIntoClosed(coord) {
-            this.closed.push(coord);
-        }
-
-
-
-
-
-        getDirection(beforeCoord, newCoord) {
-            if (beforeCoord.getCol() === newCoord.getCol()) {
-                if (beforeCoord.getRow() === newCoord.getRow() + 1)
+        string getDirection(Tuple beforeCoord, Tuple newCoord)
+        {
+            if (beforeCoord.getCol() == newCoord.getCol())
+            {
+                if (beforeCoord.getRow() == newCoord.getRow() + 1)
+                {
                     return "up";
+                }
                 else
+                {
                     return "down";
+                }
             }
-            else if (beforeCoord.getRow() === newCoord.getRow()) {
-                if (beforeCoord.getCol() === newCoord.getCol() + 1)
+
+            if (beforeCoord.getRow() == newCoord.getRow())
+            {
+                if (beforeCoord.getCol() == newCoord.getCol() + 1)
+                {
                     return "right";
+                }
                 else
+                {
                     return "left";
+                }
             }
-            else {   //si consigo rotar las imagenes esto pasara a topRight, topLeft, downRight, downLeft
-                if (beforeCoord.getRow() === newCoord.getRow() + 1)
+            else
+            {
+                if (beforeCoord.getRow() == newCoord.getRow() + 1)
+                {
                     return "up";
+                }
                 else
+                {
                     return "down";
+                }
             }
         }
-
-        paintBoats(path) {
-            let before;
-            for (let i = 0; i < path.Count; i++) {
-                let coord = path[i];
-                if (coord === path[0])
+        void paintBoats(List<Tuple> path)
+        {
+            Tuple before;
+            for (int i = 0; i < path.Count; i++)
+            {
+                Tuple coord = path[i];
+                if (coord == path[0])
+                {
                     before = coord;
-                else if (coord !== path[0] && coord !== path[path.Count - 1]) {
+                }
+                if ((coord != path[0]) && (coord != path[path.Count - 1]))
+                {
                     coord.paintCoordPath();
                     before = coord;
                 }
             }
-        }*/
-
-
-
         }
+
+    }
 }
