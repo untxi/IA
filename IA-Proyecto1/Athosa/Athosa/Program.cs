@@ -1,6 +1,7 @@
 ﻿using System;
 using CommandLine;
 using Athosa.Logic;
+using Athosa.GUI;
 
 namespace Athosa
 
@@ -56,6 +57,8 @@ namespace Athosa
          } */
         static void Main()
         {
+
+            /*
             int n = 8;
             int m = 8;
             double prob = 0.2;
@@ -63,10 +66,11 @@ namespace Athosa
             MyTuple myEnd = new MyTuple(6, 3);
             SearchAStar myA = new SearchAStar();
             myA.main(myInit, myEnd, n, m, prob);
-        }
-       
-        
+            */
 
+            Board myPanel = new Board();// 700,350);
+            
+        }
     }
 }
 
