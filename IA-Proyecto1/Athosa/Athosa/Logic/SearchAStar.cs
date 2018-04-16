@@ -115,9 +115,9 @@ namespace Athosa.Logic
         double probability;
         bool found;
         bool hasPath;
-        List<MyTuple> opened;
-        List<MyTuple> closed;
-        List<MyTuple> solution;
+        List<MyTuple> opened = new List<MyTuple>();
+        List<MyTuple> closed = new List<MyTuple>();
+        List<MyTuple> solution = new List<MyTuple>();
         MyTuple actual;
 
         public void main(MyTuple pInit, MyTuple pEnd, int n, int m, double pProbability)

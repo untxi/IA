@@ -5,8 +5,8 @@ namespace Athosa.GUI
     partial class Board
     {
 
-        public int horizontal;
-        public int vertical;
+        //public int horizontal;
+        //public int vertical;
         
         /// <summary>
         /// Required designer variable.
@@ -33,7 +33,7 @@ namespace Athosa.GUI
         /// the contents of this method with the code editor.
         /// </summary>
 
-        public void InitializeComponent(int sizeHorizontal, int sizeVertical, int sizeBlock)
+        public void InitializeComponent()//int sizeHorizontal, int sizeVertical, int sizeBlock)
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Board));
             this.panel = new System.Windows.Forms.Panel();
