@@ -98,6 +98,11 @@ namespace Athosa.Logic
         {
             return (pCoord.getRow() < n && pCoord.getCol() < m);
         }
+
+        public void setValue(int row, int col, string value)
+        {
+            matrix[row, col] = value;
+        }
     }
 
 
@@ -125,6 +130,15 @@ namespace Athosa.Logic
             hasPath = true;
         }
 
+        public List<MyTuple> getSolution()
+        {
+            return solution;
+        }
+
+        MyMatrix getMatrix()
+        {
+            return matrix;
+        }
         void start()
         {
             MyTuple coord = new MyTuple(init.getRow(), init.getCol());
@@ -413,13 +427,13 @@ namespace Athosa.Logic
 
         void paintCoordBad(MyTuple pMyTuple)
         {
-            //matrix.SetValue("bad", (pMyTuple.getRow(), pMyTuple.getCol());
-     
+
+            matrix.setValue(pMyTuple.getRow(), pMyTuple.getCol(), "bad");
         }
 
         void paintCoordPath(MyTuple pMyTuple)
         {
-            //matrix[pMyTuple.getRow(), pMyTuple.getCol()] = "allow";
+            matrix.setValue(pMyTuple.getRow(), pMyTuple.getCol(), "allow");
         }
     }
 

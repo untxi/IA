@@ -58,9 +58,11 @@ namespace Athosa
         static void Main()
         {
 
-            /*
+            
             int n = 8;
             int m = 8;
+            int a = 50;
+            /*
             double prob = 0.2;
             MyTuple myInit = new MyTuple(0, 0);
             MyTuple myEnd = new MyTuple(6, 3);
@@ -68,7 +70,11 @@ namespace Athosa
             myA.main(myInit, myEnd, n, m, prob);
             */
 
-            Board myPanel = new Board();// 700,350);
+
+            //MyMatrix myMatrix = myA.getMatrix();
+
+            Board myPanel = new Board(n,m,a);
+            myPanel.addMatrix(myMatrix);
             
         }
     }

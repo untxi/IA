@@ -12,12 +12,17 @@ namespace Athosa.GUI
 {
     public partial class Board : Form
     {
-        public Board()//int horizontal, int vertical)
+        public Board(int horizontal, int vertical)
         {
-            InitializeComponent();// horizontal,vertical);
+            InitializeComponent(horizontal,vertical);
         }
 
         private void Board_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox97_Click(object sender, EventArgs e)
         {
 
         }
