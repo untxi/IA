@@ -47,10 +47,6 @@
       <HintPath>..\packages\Google.Api.Gax.2.3.0\lib\net45\Google.Api.Gax.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Google.Api.Gax.Grpc, Version=2.3.0.0, Culture=neutral, PublicKeyToken=3ec5ea7f18953e47, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Api.Gax.Grpc.2.3.0\lib\net45\Google.Api.Gax.Grpc.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Google.Apis, Version=1.32.2.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
       <HintPath>..\packages\Google.Apis.1.32.2\lib\net45\Google.Apis.dll</HintPath>
       <Private>True</Private>
@@ -67,20 +63,8 @@
       <HintPath>..\packages\Google.Apis.Core.1.32.2\lib\net45\Google.Apis.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Google.Apis.Discovery.v1, Version=1.32.2.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Apis.Discovery.v1.1.32.2\lib\net45\Google.Apis.Discovery.v1.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Google.Apis.PlatformServices, Version=1.32.2.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
       <HintPath>..\packages\Google.Apis.1.32.2\lib\net45\Google.Apis.PlatformServices.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Google.Cloud.Speech.V1, Version=1.0.1.0, Culture=neutral, PublicKeyToken=185c282632e132a0, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Cloud.Speech.V1.1.0.1\lib\net45\Google.Cloud.Speech.V1.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Google.LongRunning, Version=1.0.0.0, Culture=neutral, PublicKeyToken=185c282632e132a0, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.LongRunning.1.0.0\lib\net45\Google.LongRunning.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Google.Protobuf, Version=3.5.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
@@ -132,8 +116,10 @@
       <DependentUpon>Board.cs</DependentUpon>
     </Compile>
     <Compile Include="Logic\Audio.cs" />
+    <Compile Include="Logic\Matrix.cs" />
     <Compile Include="Logic\Recognize.cs" />
     <Compile Include="Logic\SearchAStar.cs" />
+    <Compile Include="Logic\Tuple.cs" />
     <Compile Include="Logic\ValidationGoogleAPI.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

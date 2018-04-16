@@ -1,27 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Athosa.Logic
 {
-    class Tuple
+
+    class MyTuple
     {
         private int row;
         private int col;
-        Tuple before;
+        MyTuple before;
         public bool hasBefore;
         int estimation;
         double distance;
 
-        void main(int pRow, int pCol)
+        public MyTuple(int pRow, int pCol)
         {
             row = pRow;
             col = pCol;
         }
 
-        
+
         public int getRow()
         {
             return row;
@@ -38,64 +37,89 @@ namespace Athosa.Logic
         {
             col = pCol;
         }
-        public void setBefore(Tuple pBefore)
+        public void setBefore(MyTuple pBefore)
         {
             before = pBefore;
             hasBefore = true;
         }
-        public Tuple getBefore()
+        public MyTuple getBefore()
         {
             return before;
         }
 
-        void setEstimation(int pEstimation)
+        public void setEstimation(int pEstimation)
         {
             estimation = pEstimation;
         }
-        int getEstimation()
+        public int getEstimation()
         {
             return estimation;
         }
 
-        void setDistance(double pDistance)
+        public void setDistance(double pDistance)
         {
             distance = pDistance;
         }
 
-        double getDistance()
+        public double getDistance()
         {
             return distance;
         }
     }
 
-    class Matrix
+
+    class MyMatrix
     {
-        int[,] matrix;
-        void main(int n, int m)
+        string[,] matrix;
+        int n;
+        int m;
+        public MyMatrix(int pN, int pM)
         {
-            matrix = new int[n, m];
+            n = pN;
+            m = pM;
+            matrix = new string[n, m];
+
+
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < m; j++)
+                {
+                    matrix[i, j] = "";
+                }
+            }
+        }
+
+        public String getPossitionValue(int row, int col)
+        {
+            return matrix[row, col];
+        }
+
+        public bool inMatrixLimit(MyTuple pCoord)
+        {
+            return (pCoord.getRow() < n && pCoord.getCol() < m);
         }
     }
 
+
+
     class SearchAStar
     {
-        Tuple init;
-        Tuple end;
-        
-        Matrix matrix;
-        float probability;
+        MyTuple init;
+        MyTuple end;
+        MyMatrix matrix;
+        double probability;
         bool found;
         bool hasPath;
-        List<Tuple> opened;
-        List<Tuple> closed;
-        List<Tuple> solution;
-        Tuple actual;
+        List<MyTuple> opened;
+        List<MyTuple> closed;
+        List<MyTuple> solution;
+        MyTuple actual;
 
-        void main(Tuple pInit, Tuple pEnd, Matrix pMatrix, float pProbability)
+        public void main(MyTuple pInit, MyTuple pEnd, int n, int m, double pProbability)
         {
             init = pInit;
             end = pEnd;
-            matrix = pMatrix;
+            matrix = new MyMatrix (n, m);
             probability = pProbability;
             found = false;
             hasPath = true;
@@ -103,9 +127,7 @@ namespace Athosa.Logic
 
         void start()
         {
-            Tuple coord = new Tuple();
-            coord.setRow(init.getRow());
-            coord.setCol(init.getCol());
+            MyTuple coord = new MyTuple(init.getRow(), init.getCol());
             coord.setEstimation(init.getEstimation());
             insertIntoOpened(coord);    //Insertamos el inicio en abierta
 
@@ -126,7 +148,7 @@ namespace Athosa.Logic
             }
             if (found)
             {
-                List<Tuple> path = buildSolutionPath(); //devolver camino
+                List<MyTuple> path = buildSolutionPath(); //devolver camino
                 paintBoats(path);
             }
             else
@@ -134,7 +156,7 @@ namespace Athosa.Logic
 
         }
 
-        void modifyCoordInList(Tuple coord, List<Tuple> list)
+        void modifyCoordInList(MyTuple coord, List<MyTuple> list)
         {
             bool found = false;
             int i = 0;
@@ -150,13 +172,11 @@ namespace Athosa.Logic
 
         }
 
-        Tuple getCoordFromList(Tuple coord, List<Tuple> list)
+        MyTuple getCoordFromList(MyTuple coord, List<MyTuple> list)
         {
-            Tuple element = new Tuple();
-            element.setCol(-1);
-            element.setRow(-1);
+            MyTuple element = new MyTuple(-1,-1);
 
-            for (int i = 0; i < list.Count; i++)
+            for (int i = 0; i < list.Count(); i++)
             {
                 if ((list[i].getRow() == coord.getRow()) && (list[i].getCol() == coord.getCol()))
                 {
@@ -164,19 +184,17 @@ namespace Athosa.Logic
                     element.setRow(list[i].getRow());
                     return element;
                 }
-                else
-                {
-                    return element;
-                }
             }
-
+            return element;
+            
         }
 
-        List<Tuple> sortTuples(List<Tuple> toSort)
+        List<MyTuple> sortMyTuples(List<MyTuple> toSort)
         {
+            toSort.Sort();
             return toSort;
         }
-        bool coordInList(Tuple coord, List<Tuple> list)
+        bool coordInList(MyTuple coord, List<MyTuple> list)
         {
             for (int i = 0; i < list.Count; i++)
             {
@@ -187,7 +205,7 @@ namespace Athosa.Logic
             }
             return false;
         }
-        int estimate(Tuple coord)
+        int estimate(MyTuple coord)
         {
             int estRow = coord.getRow();
             int estCol = coord.getCol();
@@ -215,20 +233,19 @@ namespace Athosa.Logic
             }
         }
         
-        void expandNode(Tuple coord) {
+        void expandNode(MyTuple coord) {
         for (int i = -1; i <= 1; i++) {
             for (int j = -1; j <= 1; j++) {
                 int row = coord.getRow() + i;
                 int col = coord.getCol() + j;
-                Tuple actual = new Tuple(); ;
-                actual.setRow(row);
-                actual.setCol(col);
+                MyTuple actual = new MyTuple(row, col);
                 //marcas
                 if (matrix.inMatrixLimit(actual) && (i != 0 || j != 0) && matrix.getPossitionValue(row, col) != "block" 
             && matrix.getPossitionValue(row, col) != "bad")
                 {
-                    int bad = Math.random() * 100;
-                    if (bad > probability ||
+                    Random myRandom = new Random();
+                    int bad = myRandom.Next() * 200;
+                        if (bad > probability ||
                         actual.getRow() == init.getRow() && actual.getCol() == init.getCol() ||
                         actual.getRow() == end.getRow() && actual.getCol() == end.getCol()) //si pirate es <= a la prob, entonces 
                         {   
@@ -237,23 +254,26 @@ namespace Athosa.Logic
                             //valor del anterior + distancia entre padre e hijo + estimación
                             if (matrix.getPossitionValue(row, col) != "allow")
                             {
-                                actual.setDistance(getDistance(coord.getBefore() + actual.getDistance()));
+                                actual.setDistance(getDistance(coord.getBefore(), actual));
                             }
                             else
                             {
-                                actual.setDistance(getDistance(coord.getBefore()+ getDistance(coord, actual) * 2));
+                                double temp = getDistance(coord.getBefore(), actual);
+                                actual.setDistance(temp * 2);
                             }
 
                         if(!coordInList(actual, opened) && !coordInList(actual, this.closed))    //Ni abierta ni cerrada
                             insertIntoOpened(actual);
                         else{
                             bool inClosed = true;
-                            Tuple oldCoord = getCoordFromList(actual, closed);
-                            if(!oldCoord) {  //buscamos en abierta
-                                oldCoord = this.getCoordFromList(actual, opened);
+                                MyTuple oldCoord;
+                                oldCoord = getCoordFromList(actual, closed);
+                            if(oldCoord.getRow() == -1 && oldCoord.getCol() == -1)
+                           {  //buscamos en abierta
+                                oldCoord = getCoordFromList(actual, opened);
                                 inClosed = false;
                             }
-                            if(getDistance(oldCoord.getBefore() > getDistance(actual)))
+                            if(oldCoord.getDistance() > actual.getDistance())
                             {
                                 if(!inClosed)
                                     modifyCoordInList(actual, opened);
@@ -263,15 +283,15 @@ namespace Athosa.Logic
                         }
                     }
                     else{
-                        actual.paintCoordPirate();
+                        paintCoordBad(actual);
                     }
                 }
             }
         }
-        opened = opened.sortTuples(); //reordenamos despues de cada expansión
+        opened = sortMyTuples(opened); //reordenamos despues de cada expansión
     }
 
-        double getDistance(Tuple coord1, Tuple coord2)
+        double getDistance(MyTuple coord1, MyTuple coord2)
         {
             int row = coord1.getRow();
             int col = coord1.getCol();
@@ -294,25 +314,25 @@ namespace Athosa.Logic
                 return Math.Sqrt(Math.Pow(dRow, 2) + Math.Pow(dCol, 2));
             }
         }
-        List<Tuple> buildSolutionPath()
+        List<MyTuple> buildSolutionPath()
         {
             if (found)
             {
                 solution.Clear();
-                buildSolutionPathRec(closed[closed.Count - 1]);
-                return solution;
+                buildSolutionPathRec(closed[closed.Count() - 1]);
             }
+            return solution;
         }
-        void buildSolutionPathRec(Tuple actual)
+        void buildSolutionPathRec(MyTuple actual)
         {
-            if (actual.hasBefore())
+            if (actual.hasBefore)
             {
-                buildSolutionPathRec(getBefore(actual));
+                buildSolutionPathRec(actual.getBefore());
                 solution.Add(actual);
             }
             else
             {
-                this.solution.push(act);
+                solution.Add(actual);
             }
 
         }
@@ -321,23 +341,22 @@ namespace Athosa.Logic
         {
             return found;
         }
-        Tuple getFromOpened()
+        MyTuple getFromOpened()
         {
-            let first = this.opened[0];
-            this.opened.splice(0, 1);
+            MyTuple first = opened[0];
             return first;
         }
 
-        void insertIntoOpened(Tuple coord)
+        void insertIntoOpened(MyTuple coord)
         {
             opened.Add(coord);
         }
-        void insertIntoClosed(Tuple coord)
+        void insertIntoClosed(MyTuple coord)
         {
             closed.Add(coord);
         }
 
-        string getDirection(Tuple beforeCoord, Tuple newCoord)
+        string getDirection(MyTuple beforeCoord, MyTuple newCoord)
         {
             if (beforeCoord.getCol() == newCoord.getCol())
             {
@@ -374,23 +393,34 @@ namespace Athosa.Logic
                 }
             }
         }
-        void paintBoats(List<Tuple> path)
+        void paintBoats(List<MyTuple> path)
         {
-            Tuple before;
+            MyTuple before;
             for (int i = 0; i < path.Count; i++)
             {
-                Tuple coord = path[i];
+                MyTuple coord = path[i];
                 if (coord == path[0])
                 {
                     before = coord;
                 }
                 if ((coord != path[0]) && (coord != path[path.Count - 1]))
                 {
-                    coord.paintCoordPath();
+                    paintCoordPath(coord);
                     before = coord;
                 }
             }
         }
 
+        void paintCoordBad(MyTuple pMyTuple)
+        {
+            //matrix.SetValue("bad", (pMyTuple.getRow(), pMyTuple.getCol());
+     
+        }
+
+        void paintCoordPath(MyTuple pMyTuple)
+        {
+            //matrix[pMyTuple.getRow(), pMyTuple.getCol()] = "allow";
+        }
     }
+
 }
