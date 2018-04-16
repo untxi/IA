@@ -74,7 +74,7 @@ namespace Athosa
             //MyMatrix myMatrix = myA.getMatrix();
 
             Board myPanel = new Board(n,m,a);
-            myPanel.addMatrix(myMatrix);
+            //myPanel.addMatrix(myMatrix);
             
         }
     }

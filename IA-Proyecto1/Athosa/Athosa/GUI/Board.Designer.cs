@@ -33,7 +33,7 @@ namespace Athosa.GUI
         /// the contents of this method with the code editor.
         /// </summary>
 
-        public void InitializeComponent()//int sizeHorizontal, int sizeVertical)
+        public void InitializeComponent(int sizeHorizontal, int sizeVertical, int sizeBlock)
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Board));
             this.panel = new System.Windows.Forms.Panel();
