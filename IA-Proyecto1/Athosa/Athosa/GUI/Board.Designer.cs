@@ -37,6 +37,13 @@ namespace Athosa.GUI
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Board));
             this.panel = new System.Windows.Forms.Panel();
+            this.pictureBox89 = new System.Windows.Forms.PictureBox();
+            this.pictureBox90 = new System.Windows.Forms.PictureBox();
+            this.pictureBox91 = new System.Windows.Forms.PictureBox();
+            this.pictureBox92 = new System.Windows.Forms.PictureBox();
+            this.pictureBox85 = new System.Windows.Forms.PictureBox();
+            this.pictureBox71 = new System.Windows.Forms.PictureBox();
+            this.pictureBox70 = new System.Windows.Forms.PictureBox();
             this.pictureBox84 = new System.Windows.Forms.PictureBox();
             this.pictureBox86 = new System.Windows.Forms.PictureBox();
             this.pictureBox87 = new System.Windows.Forms.PictureBox();
@@ -130,14 +137,14 @@ namespace Athosa.GUI
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.horizontalScrollbar = new System.Windows.Forms.HScrollBar();
             this.verticalScrollbar = new System.Windows.Forms.VScrollBar();
-            this.pictureBox70 = new System.Windows.Forms.PictureBox();
-            this.pictureBox71 = new System.Windows.Forms.PictureBox();
-            this.pictureBox85 = new System.Windows.Forms.PictureBox();
-            this.pictureBox89 = new System.Windows.Forms.PictureBox();
-            this.pictureBox90 = new System.Windows.Forms.PictureBox();
-            this.pictureBox91 = new System.Windows.Forms.PictureBox();
-            this.pictureBox92 = new System.Windows.Forms.PictureBox();
             this.panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox89)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox90)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox91)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox92)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox85)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox71)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox70)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox84)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox86)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox87)).BeginInit();
@@ -229,13 +236,6 @@ namespace Athosa.GUI
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.start)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox70)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox71)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox85)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox89)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox90)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox91)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox92)).BeginInit();
             this.SuspendLayout();
             // 
             // panel
@@ -345,6 +345,76 @@ namespace Athosa.GUI
             this.panel.Name = "panel";
             this.panel.Size = new System.Drawing.Size(690, 340);
             this.panel.TabIndex = 0;
+            // 
+            // pictureBox89
+            // 
+            this.pictureBox89.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox89.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox89.Location = new System.Drawing.Point(401, 294);
+            this.pictureBox89.Name = "pictureBox89";
+            this.pictureBox89.Size = new System.Drawing.Size(50, 50);
+            this.pictureBox89.TabIndex = 104;
+            this.pictureBox89.TabStop = false;
+            // 
+            // pictureBox90
+            // 
+            this.pictureBox90.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox90.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox90.Location = new System.Drawing.Point(249, 294);
+            this.pictureBox90.Name = "pictureBox90";
+            this.pictureBox90.Size = new System.Drawing.Size(50, 50);
+            this.pictureBox90.TabIndex = 103;
+            this.pictureBox90.TabStop = false;
+            // 
+            // pictureBox91
+            // 
+            this.pictureBox91.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox91.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox91.Location = new System.Drawing.Point(352, 292);
+            this.pictureBox91.Name = "pictureBox91";
+            this.pictureBox91.Size = new System.Drawing.Size(50, 50);
+            this.pictureBox91.TabIndex = 102;
+            this.pictureBox91.TabStop = false;
+            // 
+            // pictureBox92
+            // 
+            this.pictureBox92.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox92.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox92.Location = new System.Drawing.Point(301, 290);
+            this.pictureBox92.Name = "pictureBox92";
+            this.pictureBox92.Size = new System.Drawing.Size(50, 50);
+            this.pictureBox92.TabIndex = 101;
+            this.pictureBox92.TabStop = false;
+            // 
+            // pictureBox85
+            // 
+            this.pictureBox85.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox85.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox85.Location = new System.Drawing.Point(648, 290);
+            this.pictureBox85.Name = "pictureBox85";
+            this.pictureBox85.Size = new System.Drawing.Size(50, 50);
+            this.pictureBox85.TabIndex = 100;
+            this.pictureBox85.TabStop = false;
+            // 
+            // pictureBox71
+            // 
+            this.pictureBox71.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox71.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox71.Location = new System.Drawing.Point(648, 244);
+            this.pictureBox71.Name = "pictureBox71";
+            this.pictureBox71.Size = new System.Drawing.Size(50, 50);
+            this.pictureBox71.TabIndex = 99;
+            this.pictureBox71.TabStop = false;
+            // 
+            // pictureBox70
+            // 
+            this.pictureBox70.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox70.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox70.Location = new System.Drawing.Point(597, 292);
+            this.pictureBox70.Name = "pictureBox70";
+            this.pictureBox70.Size = new System.Drawing.Size(50, 50);
+            this.pictureBox70.TabIndex = 98;
+            this.pictureBox70.TabStop = false;
             // 
             // pictureBox84
             // 
@@ -1334,76 +1404,6 @@ namespace Athosa.GUI
             this.verticalScrollbar.Size = new System.Drawing.Size(15, 340);
             this.verticalScrollbar.TabIndex = 1;
             // 
-            // pictureBox70
-            // 
-            this.pictureBox70.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox70.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox70.Location = new System.Drawing.Point(597, 292);
-            this.pictureBox70.Name = "pictureBox70";
-            this.pictureBox70.Size = new System.Drawing.Size(50, 50);
-            this.pictureBox70.TabIndex = 98;
-            this.pictureBox70.TabStop = false;
-            // 
-            // pictureBox71
-            // 
-            this.pictureBox71.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox71.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox71.Location = new System.Drawing.Point(648, 244);
-            this.pictureBox71.Name = "pictureBox71";
-            this.pictureBox71.Size = new System.Drawing.Size(50, 50);
-            this.pictureBox71.TabIndex = 99;
-            this.pictureBox71.TabStop = false;
-            // 
-            // pictureBox85
-            // 
-            this.pictureBox85.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox85.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox85.Location = new System.Drawing.Point(648, 290);
-            this.pictureBox85.Name = "pictureBox85";
-            this.pictureBox85.Size = new System.Drawing.Size(50, 50);
-            this.pictureBox85.TabIndex = 100;
-            this.pictureBox85.TabStop = false;
-            // 
-            // pictureBox89
-            // 
-            this.pictureBox89.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox89.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox89.Location = new System.Drawing.Point(401, 294);
-            this.pictureBox89.Name = "pictureBox89";
-            this.pictureBox89.Size = new System.Drawing.Size(50, 50);
-            this.pictureBox89.TabIndex = 104;
-            this.pictureBox89.TabStop = false;
-            // 
-            // pictureBox90
-            // 
-            this.pictureBox90.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox90.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox90.Location = new System.Drawing.Point(249, 294);
-            this.pictureBox90.Name = "pictureBox90";
-            this.pictureBox90.Size = new System.Drawing.Size(50, 50);
-            this.pictureBox90.TabIndex = 103;
-            this.pictureBox90.TabStop = false;
-            // 
-            // pictureBox91
-            // 
-            this.pictureBox91.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox91.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox91.Location = new System.Drawing.Point(352, 292);
-            this.pictureBox91.Name = "pictureBox91";
-            this.pictureBox91.Size = new System.Drawing.Size(50, 50);
-            this.pictureBox91.TabIndex = 102;
-            this.pictureBox91.TabStop = false;
-            // 
-            // pictureBox92
-            // 
-            this.pictureBox92.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox92.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox92.Location = new System.Drawing.Point(301, 290);
-            this.pictureBox92.Name = "pictureBox92";
-            this.pictureBox92.Size = new System.Drawing.Size(50, 50);
-            this.pictureBox92.TabIndex = 101;
-            this.pictureBox92.TabStop = false;
-            // 
             // Board
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1417,6 +1417,13 @@ namespace Athosa.GUI
             this.Text = "Athosa!";
             this.Load += new System.EventHandler(this.Board_Load);
             this.panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox89)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox90)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox91)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox92)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox85)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox71)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox70)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox84)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox86)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox87)).EndInit();
@@ -1508,13 +1515,6 @@ namespace Athosa.GUI
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.start)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox70)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox71)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox85)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox89)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox90)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox91)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox92)).EndInit();
             this.ResumeLayout(false);
 
         }

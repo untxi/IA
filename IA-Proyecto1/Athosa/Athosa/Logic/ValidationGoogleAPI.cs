@@ -39,7 +39,7 @@ namespace Athosa
             var service = new DiscoveryService(new BaseClientService.Initializer
             {
                 ApplicationName = "Discovery Sample",
-                ApiKey = "AIzaSyAMsgwxweWoXi49yg1ovb-0S3bS9Tw4Xik",
+                ApiKey = "key",
             });
 
             // Run the request.
