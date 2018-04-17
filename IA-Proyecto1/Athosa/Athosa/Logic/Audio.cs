@@ -1,4 +1,44 @@
-﻿/*
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+// Audio Library
+using NAudio.Wave;
+using System.IO;
+
+namespace Athosa.Logic
+{
+    class Audio
+    { 
+        public Audio()
+        {
+
+        }
+
+        public void listen()
+        {
+
+        }
+
+        public void said()
+        {
+
+        }
+
+        public string writes()
+        {
+            return "Hi";
+        }
+
+        public void recognize()
+        {
+
+        }
+    }
+}
+
+/*
 using System;
 using System.Collections.Generic;
 using System.Linq;
