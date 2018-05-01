@@ -11,9 +11,11 @@ import os.path
 
 # Auxiliar Function
 def FileExist(filePath):
-    if os.path.isfile(filePath) and os.access(filePath, os.R_OK):
+    if os.path.isfile(filePath) and os.access(filePath, os.R_OK) and (filePath[len(filePath)-6 :] == ".tdata"):
+        print ":)"
         return True
     else:
+        print ":("
         return False
 
 
@@ -22,9 +24,8 @@ class Neuron:
         self.realDataC1 = []
         self.realDataC2 = []
         self.realData = self.realDataC1 + self.realDataC2
-        return True
     
-    def getRealData(fileName, setBelongs):
+    def getRealData(self, fileName, setBelongs):
         """ Read a .tdata file """
         try:
             # print "File exists and is readable"
@@ -38,7 +39,7 @@ class Neuron:
 
         for line in myFile:
             line = line.replace('\n', ' ')
-            line.split(' ');
+            line.split(' ')
             for point in line:
                 setBelongs.append(point)
 
