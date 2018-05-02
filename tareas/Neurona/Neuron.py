@@ -5,6 +5,8 @@
 # Problema de Categorizacion, Redes Neuronales
 # Samantha Arburola, Mayo 2018
 
+# Library
+import random
 
 
 class Neuron:
@@ -12,6 +14,12 @@ class Neuron:
         self.realDataC1 = []
         self.realDataC2 = []
         self.realData   = []
+        self.x  = 0
+        self.y  = 0
+        self.b  = 1
+        self.w1 = 0
+        self.w2 = 0
+        self.d  = 0
     
 
     def setConjD(self, listD):
@@ -47,9 +55,29 @@ class Neuron:
     def getConjC2(self):
         return self.realDataC2
 
-    def Training(self):
-        return True
+    def correction(self, point):        
+        if (self.realDataC2.find(point)) and self.y = -1:
+                self.d = 1
+        if (point in self.realDataC2) and self.y = 1:
+                self.d = -1
+
+        self.w1 = self.w1 + self.d * self.x
+        self.w2 = self.w2 + self.d * self.y
+        self.b  = self.b  + self.d
+        
+    def training(self):
+        self.w1 = random()
+        self.w2 = random()
+        self.b  = random()
+
+        for point in self.realData:
+            print(point) # ToDo
+        
 
         
-    def Classify(self):
-        return True
+    def classify(self, w1, w2, b):
+        temp = (self.x * self.w1) + (self.y * self.w2) + self.b
+        if temp >= 0:
+            return 1
+        if temp < 0:
+            return -1
