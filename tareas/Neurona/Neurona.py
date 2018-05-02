@@ -12,18 +12,28 @@ import os.path
 # Auxiliar Function
 def FileExist(filePath):
     if os.path.isfile(filePath) and os.access(filePath, os.R_OK) and (filePath[len(filePath)-6 :] == ".tdata"):
-        print ":)"
         return True
     else:
-        print ":("
         return False
 
+    
+def ExtractTuple(tupleInString):
+    listOfTuples = []
+    tupleInString = tupleInString.split(' ')
+    for x in tupleInString:
+        x = x.replace(')','')
+        x = x.replace('(','')
+        x = x.split(',')
+        new = (int(x[0]), int(x[1]))
+        listOfTuples.append(new)
+
+    return listOfTuples
 
 class Neuron:
     def __init__(self):
         self.realDataC1 = []
         self.realDataC2 = []
-        self.realData = self.realDataC1 + self.realDataC2
+        self.realData   = []
     
     def getRealData(self, fileName, setBelongs):
         """ Read a .tdata file """
@@ -31,20 +41,26 @@ class Neuron:
             # print "File exists and is readable"
             FileExist(fileName)
         except:
-            print "Either file is missing or is not readable"
+            print ("Either file is missing or is not readable")
             return False
-        
+
+        myList = []
         myFile = open(fileName, 'r')
-        myFile.readlines()
+        myFileLines = myFile.readlines()
+        for line in myFileLines:
+            myList.extend(ExtractTuple(line))
+                    
+        myFile.close()
+        if setBelongs == 1:
+            self.realDataC1 = myList
+        if setBelongs == 2:
+            self.realDataC2 = myList
 
-        for line in myFile:
-            line = line.replace('\n', ' ')
-            line.split(' ')
-            for point in line:
-                setBelongs.append(point)
-
+        self.realData = self.realDataC1 + self.realDataC2
         return True
     
+    def showData(self):
+        print (self.realData)
 
     def Training(self):
         return True
@@ -55,3 +71,9 @@ class Neuron:
            
 
 
+myNewbie = Neuron()
+res1 = myNewbie.getRealData("planeC1.tdata", 1)
+res2 = myNewbie.getRealData("planeC2.tdata", 2)
+print ('=== D ===')
+myNewbie.showData()
+print ('=== D ===')
