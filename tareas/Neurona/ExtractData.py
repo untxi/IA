@@ -77,10 +77,3 @@ class ExtractData():
             self.realData = self.realDataC1 + self.realDataC2
         else:
             print ("Either file is missing or is not readable")
-
-        
-
-myData = ExtractData()
-myData.setFile("planeC1.tdata")
-myData.readData(1)
-myData.showData()

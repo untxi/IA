@@ -56,9 +56,9 @@ class Neuron:
         return self.realDataC2
 
     def correction(self, point):        
-        if (self.realDataC2.find(point)) and self.y = -1:
+        if (self.realDataC2.find(point)) and self.y == -1:
                 self.d = 1
-        if (point in self.realDataC2) and self.y = 1:
+        if (point in self.realDataC2) and self.y == 1:
                 self.d = -1
 
         self.w1 = self.w1 + self.d * self.x
@@ -66,14 +66,12 @@ class Neuron:
         self.b  = self.b  + self.d
         
     def training(self):
-        self.w1 = random()
-        self.w2 = random()
-        self.b  = random()
+        self.w1 = random.random()
+        self.w2 = random.random()
+        self.b  = random.random()
 
         for point in self.realData:
             print(point) # ToDo
-        
-
         
     def classify(self, w1, w2, b):
         temp = (self.x * self.w1) + (self.y * self.w2) + self.b
@@ -81,3 +79,6 @@ class Neuron:
             return 1
         if temp < 0:
             return -1
+
+    def consultPoint(self, myX, myY):
+        print('Conjunto: ')
